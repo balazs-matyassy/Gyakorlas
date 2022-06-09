@@ -1,0 +1,3 @@
+cat;Cirmi;2020
+dog;Morzsi;2021
+cat;Miska;i.u. 2020
