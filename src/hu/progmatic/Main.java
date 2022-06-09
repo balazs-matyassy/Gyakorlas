@@ -33,6 +33,7 @@ public class Main {
             }
 
             // countBySpecies.keySet() -> {"CAT", "DOG"}
+            //        values = {countBySpecies.get("CAT"), countBySpecies.get("DOG")}
             // countBySpecies.values() -> {2, 2}
             // (countBySpecies.entrySet() -> {"CAT" -> 2, "DOG" -> 2}
             for (String species : countBySpecies.keySet()) {
