@@ -4,16 +4,44 @@ import hu.progmatic.model.Animal;
 import hu.progmatic.model.AnimalFactory;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         try {
             List<Animal> animals = loadAnimals("animals.txt");
             System.out.println("A beolvasott adatok száma: " + animals.size());
+
+            // 1. feladat
+            Map<String, List<Animal>> animalsBySpecies = new TreeMap<>();
+
+            for (Animal animal : animals) {
+                if (!animalsBySpecies.containsKey(animal.getSpecies())) {
+                    animalsBySpecies.put(animal.getSpecies(), new ArrayList<>());
+                }
+
+                List<Animal> subList = animalsBySpecies.get(animal.getSpecies());
+                subList.add(animal);
+            }
+
+            // 2. feladat
+            Map<String, Integer> countBySpecies = new TreeMap<>();
+
+            for (Animal animal : animals) {
+                int count = countBySpecies.getOrDefault(animal.getSpecies(), 0);
+                countBySpecies.put(animal.getSpecies(), count + 1);
+            }
+
+            // countBySpecies.keySet() -> {"CAT", "DOG"}
+            // countBySpecies.values() -> {2, 2}
+            // (countBySpecies.entrySet() -> {"CAT" -> 2, "DOG" -> 2}
+            for (String species : countBySpecies.keySet()) {
+                System.out.println(species + ": " + countBySpecies.get(species));
+            }
+
             saveAnimals("checked.txt", animals);
+            saveAnimals("cats.txt", animalsBySpecies.get("CAT"));
+            saveAnimals("dogs.txt", animalsBySpecies.get("DOG"));
         } catch (IOException e) {
             e.printStackTrace();
         }

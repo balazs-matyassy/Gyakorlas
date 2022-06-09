@@ -1,3 +1,5 @@
 cat;Cirmi;2020
 dog;Morzsi;2021
 cat;Miska;i.u. 2020
+cat;Dezső;2019
+dog;Buksi;2018
